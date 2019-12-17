@@ -28,11 +28,11 @@ class BarGraph extends React.Component {
 
     const xAxisGroup = graph.append('g')
       .attr('transform', `translate(0, ${graphHeight})`)
-
+        
     xAxisGroup.selectAll('text')
       .attr('transform', 'rotate(-40)')
       .attr('text-anchor', 'end')
-      .attr('font-size', '14px')
+      .attr('font-size', '26px')
 
     const yAxisGroup = graph.append('g');
 
@@ -45,24 +45,14 @@ class BarGraph extends React.Component {
 
     const xAxis = d3.axisBottom(x);
     const yAxis = d3.axisLeft(y)
-      .ticks(3)
-      .tickFormat(d => d);
-
-    const t = d3.transition().duration(750)
+      .ticks(5)
+      .tickFormat(d => d);    
 
     y.domain([0, d3.max(data, d => d.mentions)]);
     x.domain(data.map(item => item.name));
 
     const rects = graph.selectAll('rect')
       .data(data);
-
-    //remove unwanted shapes
-    rects.exit().remove();
-
-    // //update current shapes in DOM
-    // rects.attr('width', x.bandwidth)
-    //   .attr('fill', 'orange')
-    //   .attr('x', d => x(d.name))
 
     rects.enter()
       .append('rect')
@@ -72,12 +62,13 @@ class BarGraph extends React.Component {
       .attr('x', d => x(d.name))
       .attr('y', graphHeight)
       .merge(rects)
-      .transition(t)
+      .transition(d3.transition().duration(750))
       .attr("height", d => graphHeight - y(d.mentions))
       .attr('y', d => y(d.mentions));
-
+   
     xAxisGroup.call(xAxis);
     yAxisGroup.call(yAxis);
+
   };
 
   render(){

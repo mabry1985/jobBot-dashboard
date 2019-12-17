@@ -1,5 +1,5 @@
 import React from 'react';
-import BarGraph from './graphs/BarGraph';
+import GraphContainer from './graphs/GraphContainer';
 import './App.css';
 
 function App() {
@@ -23,7 +23,7 @@ function App() {
   ]
   return (
     <div className="App">
-    <BarGraph data={data}/>
+    <GraphContainer data={data}/>
     </div>
   );
 }
