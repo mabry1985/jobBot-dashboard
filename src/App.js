@@ -1,24 +1,29 @@
 import React from 'react';
-import logo from './logo.svg';
+import BarGraph from './graphs/BarGraph';
 import './App.css';
 
 function App() {
+  const data = [
+    {
+      name: 'Backbone',
+      mentions: 2
+    },
+    {
+      name: 'Vue',
+      mentions: 5
+    },
+    {
+      name: 'React',
+      mentions: 14
+    },
+    {
+      name: 'Angular',
+      mentions: 10
+    }
+  ]
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <BarGraph data={data}/>
     </div>
   );
 }
