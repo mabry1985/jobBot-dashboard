@@ -1,4 +1,16 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# jobBot Dashboard
+
+## Planning
+
+### To-do
+
+### Sketch
+
+![Rough Sketch](./public/Sketch.png)
+
+### Component Tree
+
+![Component Tree](./public/Component-Tree.png)
 
 ## Available Scripts
 
