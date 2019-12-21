@@ -13,7 +13,7 @@ class GraphContainer extends React.Component {
   activeContent = () => {
     switch(this.state.active) {
       case "Bar Graph":
-        return <BarGraph data={this.props.data} />;
+        return <BarGraph />;
       default:
         return <div></div>
     } 

@@ -1,9 +1,10 @@
 import React from 'react';
-import GraphContainer from './graphs/GraphContainer';
+import GraphContainer from './components/graphs/GraphContainer';
 import './App.css';
 
-function App() {
-  const data = [
+
+class App extends React.Component {
+  data = [
     {
       name: 'Backbone',
       mentions: 2
@@ -21,11 +22,16 @@ function App() {
       mentions: 10
     }
   ]
-  return (
-    <div className="App">
-    <GraphContainer data={data}/>
-    </div>
-  );
+
+  
+
+  render(){
+    return (
+      <div className="App">
+      <GraphContainer data={this.data}/>
+      </div>
+    );
+  }
 }
 
 export default App;
