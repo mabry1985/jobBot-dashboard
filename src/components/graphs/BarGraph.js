@@ -9,68 +9,56 @@ class BarGraph extends React.Component {
     super(props);
 
     this.state = {
-      data: []
+      data: [],
+      width: 500,
+      height: 500,
+      margin: { top: 20, bottom: 20, left: 20, right: 20}
     };
   }
   
   async componentDidMount() {
-    const request = await Promise.all([
-      axios.get("http://localhost:5000/jobs/bar-graph/"),
-    ])
-    console.log(request)
-    this.setState({ data: request });
-
+    const request = await axios.get("http://localhost:5000/skills/bar-graph/")
+    this.setState({ data: request.data });
   };
-//  x = Object.keys(this.state);
-//  y = Object.values(this.state);  
-//  xMax = 600;
-//   this.yMax = 600 - 120;
-
-//   this.xScale = scaleBand({
-//     rangeRound: [0, this.xMax],
-//     domain: this.x,
-//     padding: 0.4
-//   });
-
-//   this.yScale = scaleLinear({
-//     rangeRound: [this.yMax, 0],
-//     domain: [0, Math.max(...this.y)]
-//   });
-  
-  componentDidUpdate = () => {
-    
-  };
-  
-  // bounds
 
   render() {
+    const xMax = this.state.width - this.state.margin.left - this.state.margin.right;
+    const yMax = this.state.height - this.state.margin.top - this.state.margin.bottom;
+
+    const x = d => d.query;
+    const y = d => +d.count * 100;
+
+    const xScale = scaleBand({
+      rangeRound: [0, xMax],
+      domain: this.state.data.map(x),
+      padding: 0.4,
+    });
+    const yScale = scaleLinear({
+      rangeRound: [yMax, 0],
+      domain: [0, Math.max(...this.state.data.map(y))],
+    });
+
+    const compose = (scale, accessor) => data => scale(accessor(data));
+    const xPoint = compose(xScale, x);
+    const yPoint = compose(yScale, y);
 
     return (
-      <svg width={this.width} height={this.height}>
-        
-
-        {/* <Group top={40}>
-          {this.state.map((d, i) => {
-            const letter = this.x(d);
-            const barWidth = this.xScale.bandwidth();
-            const barHeight = this.yMax - this.yScale(this.y(d));
-            const barX = this.xScale(letter);
-            const barY = this.yMax - barHeight;
-            return (
+      <svg width={this.state.width} height={this.state.height}>
+        {this.state.data.map((d, i) => {
+          const barHeight = yMax - yPoint(d);
+          console.log(xScale.bandwidth())
+          return (
+            <Group key={`bar-${i}`}>
               <Bar
-                key={`bar-${letter}`}
-                x={barX}
-                y={barY}
-                width={barWidth}
+                x={xPoint(d)}
+                y={yMax - barHeight}
                 height={barHeight}
-                fill="rgba(23, 233, 217, .5)"
-                onClick={event => {
-                  alert(`clicked: ${JSON.stringify(Object.values(d))}`);
-                }}
+                width={xScale.bandwidth()}
+                fill="#fc2e1c"
               />
-            );
-          })}
-        </Group> */}
+            </Group>
+          );
+        })}
       </svg>
     );
   }
