@@ -9,25 +9,19 @@ class App extends React.Component {
   
   render(){
     return (
-      <div className='container'>
-        <Column
-          alignItems='center'
-        >
-          <div className='container'>
-            <Row horizontal='space-between'>
-
-              <Column alignSelf='center'>
-                <ResultsContainer />
-              </Column>
-              
-              <Column alignSelf='center'>
-                <GraphContainer />
-              </Column>
-            
-            </Row>
-          </div>
-        </Column>
-      </div>
+      <Column flexGrow={1}>
+        <Row horizontal="center">
+          <h1 style={{ marginBottom: 20}}>jobBot</h1>
+        </Row>
+        <Row vertical="center">
+          <Column flexGrow={1} horizontal="center">
+            <ResultsContainer />
+          </Column>
+          <Column flexGrow={1} horizontal="center">
+            <GraphContainer />
+          </Column>
+        </Row>
+      </Column>
     );
   }
 }
