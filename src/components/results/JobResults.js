@@ -1,43 +1,54 @@
 import React from "react";
+var DataTable = require("react-data-components").DataTable;
+// require("../../stylesheets/table-twbs.css");
+
 // import { Link } from "react-router-dom";
 
-const Job = props => {
+// const Job = props => {
 
-  const truncate = (length, title) => {
-    const titleArray = title.split('');
-    console.log(titleArray.length)
-    const truncTitle = titleArray.splice(length, titleArray.length).concat('...');
-    return truncTitle
-  } 
+//   const truncate = (length, string) => {
+//     const arr = string.split(' ');
+//     let truncString = string
+//     if (arr.length > length){
+//       truncString = arr.splice(0, length)
+//                        .concat('...')
+//                        .join(' ');
+      
+//       return truncString;
+//     }
+//       return truncString
+//   } 
 
-  return (
-    <div className="container">
-      <h4>{truncate(5, props.job.title)}</h4>
-      <h5>{props.job.postedBy}|{props.job.jobBoardSite}</h5>
-     </div>
-  )
-  };
+//   return (
+//     <div className="container">
+//       <h4>{truncate(5, props.job.title)}</h4>
+//       <h5>{props.job.postedBy}|{props.job.jobBoardSite}</h5>
+//      </div>
+//   )
+//   };
 
 const JobResults = props => {
+  
+  const columns = [
+    { title: 'Name', prop: 'title'  },
+    { title: 'Posted By', prop: 'postedBy' },
+    { title: 'Job Board', prop: 'jobBoardSite' },
+    { title: 'Date', prop: 'timeStamp'}
+  ];
 
-  const jobList = () => {
-    return props.jobs.map(currentjob => {
-      return (
-        <Job
-          job={currentjob}
-          key={currentjob._id}
-        />
-      );
-    });
-  }
 
     return (
-      <div className='container'>
-          <h4>{props.jobs.length} jobs in database</h4>
-          <div className="container">{jobList()}</div>
-      </div>
+      <DataTable
+        className="container"
+        keys="_id"
+        columns={columns}
+        initialData={props.jobs}
+        initialPageLength={5}
+        initialSortBy={{ prop: "timeStamp", order: "descending" }}
+        pageLengthOptions={[5, 10, 20, 50]}
+      />
     );
-  }
+}
 
 
 export default JobResults;
