@@ -1,88 +1,43 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import axios from "axios";
+import React from "react";
+// import { Link } from "react-router-dom";
 
-const Exercise = props => (
-  <tr>
-    <td>{props.exercise.username}</td>
-    <td>{props.exercise.description}</td>
-    <td>{props.exercise.duration}</td>
-    <td>{props.exercise.date.substring(0, 10)}</td>
-    <td>
-      <Link to={"/edit/" + props.exercise._id}>edit</Link> |{" "}
-      <a
-        href="#"
-        onClick={() => {
-          props.deleteExercise(props.exercise._id);
-        }}
-      >
-        delete
-      </a>
-    </td>
-  </tr>
-);
+const Job = props => {
 
-class ExercisesList extends Component {
-  constructor(props) {
-    super(props);
+  const truncate = (length, title) => {
+    const titleArray = title.split('');
+    console.log(titleArray.length)
+    const truncTitle = titleArray.splice(length, titleArray.length).concat('...');
+    return truncTitle
+  } 
 
-    this.state = {
-      exercises: []
-    };
-  }
-
-  componentDidMount() {
-    axios
-      .get("http://localhost:5000/exercise/")
-      .then(response => {
-        this.setState({ exercises: response.data });
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }
-
-  deleteExercise = id => {
-    axios.delete("http://localhost:5000/exercise/" + id).then(response => {
-      console.log(response.data);
-    });
-
-    this.setState({
-      exercises: this.state.exercises.filter(el => el._id !== id)
-    });
+  return (
+    <div className="container">
+      <h4>{truncate(5, props.job.title)}</h4>
+      <h5>{props.job.postedBy}|{props.job.jobBoardSite}</h5>
+     </div>
+  )
   };
 
-  exerciseList() {
-    return this.state.exercises.map(currentexercise => {
+const JobResults = props => {
+
+  const jobList = () => {
+    return props.jobs.map(currentjob => {
       return (
-        <Exercise
-          exercise={currentexercise}
-          deleteExercise={this.deleteExercise}
-          key={currentexercise._id}
+        <Job
+          job={currentjob}
+          key={currentjob._id}
         />
       );
     });
   }
 
-  render() {
     return (
-      <div>
-        <h3>Logged Exercises</h3>
-        <table className="table">
-          <thead className="thead-light">
-            <tr>
-              <th>Username</th>
-              <th>Description</th>
-              <th>Duration</th>
-              <th>Date</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
-          <tbody>{this.exerciseList()}</tbody>
-        </table>
+      <div className='container'>
+          <h4>{props.jobs.length} jobs in database</h4>
+          <div className="container">{jobList()}</div>
       </div>
     );
   }
-}
 
-export default ExercisesList;
+
+export default JobResults;
