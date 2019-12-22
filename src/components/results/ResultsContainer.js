@@ -27,7 +27,7 @@ class ResultsContainer extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="container" style={{maxWidth:"500px"}}>
         {/* <JobFilters/> */}
         <JobResults  jobs={this.state.jobs}/>
       </div>
