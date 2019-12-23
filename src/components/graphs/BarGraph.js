@@ -4,6 +4,7 @@ import { Bar } from "@vx/shape";
 import { Group } from "@vx/group";
 import { scaleBand, scaleLinear } from "@vx/scale";
 import { AxisLeft, AxisBottom } from "@vx/axis";
+import { GradientTealBlue } from "@vx/gradient";
 
 class BarGraph extends React.Component {
   constructor(props) {
@@ -53,7 +54,7 @@ class BarGraph extends React.Component {
         />
         <AxisLeft
           top={this.state.margin.top}
-          left={this.state.margin.left + 2}
+          left={this.state.margin.left + 6}
           scale={yScale}
           numTicks={6}
           tickFormat={this.yScaleFormat}
@@ -62,13 +63,13 @@ class BarGraph extends React.Component {
           const barHeight = yMax - yPoint(d);
           return (
             <Group key={`bar-${i}`}>
-
+              <GradientTealBlue id="TealBlue" />
               <Bar
                 x={xPoint(d)}
                 y={yMax - barHeight}
                 height={barHeight}
                 width={xScale.bandwidth()}
-                fill="indigo"
+                fill={`url(#TealBlue)`}
               />
             </Group>
           );
