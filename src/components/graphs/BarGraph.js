@@ -46,35 +46,47 @@ class BarGraph extends React.Component {
     const yPoint = compose(yScale, y);
 
     return (
-      <svg width={this.state.width} height={this.state.height}>          
-        <AxisBottom
-          top={yMax}
-          scale={xScale}
-          numTicks={this.state.width > 520 ? 10 : 5}
-        />
-        <AxisLeft
-          top={this.state.margin.top}
-          left={this.state.margin.left + 6}
-          scale={yScale}
-          numTicks={6}
-          tickFormat={this.yScaleFormat}
-        />
-        {this.state.data.map((d, i) => {
-          const barHeight = yMax - yPoint(d);
-          return (
-            <Group key={`bar-${i}`}>
-              <GradientTealBlue id="TealBlue" />
-              <Bar
-                x={xPoint(d)}
-                y={yMax - barHeight}
-                height={barHeight}
-                width={xScale.bandwidth()}
-                fill={`url(#TealBlue)`}
-              />
-            </Group>
-          );
-        })}
-      </svg>
+      <div
+        style={{
+          height: 600,
+          backgroundColor: "#F8F8FF",
+          padding: 40,
+          paddingLeft: 88,
+          borderRadius: 5,
+          boxShadow:
+            "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"
+        }}
+      >
+        <svg width={this.state.width} height={this.state.height}>
+          <AxisBottom
+            top={yMax}
+            scale={xScale}
+            numTicks={this.state.width > 520 ? 10 : 5}
+          />
+          <AxisLeft
+            top={this.state.margin.top}
+            left={this.state.margin.left + 6}
+            scale={yScale}
+            numTicks={6}
+            tickFormat={this.yScaleFormat}
+          />
+          {this.state.data.map((d, i) => {
+            const barHeight = yMax - yPoint(d);
+            return (
+              <Group key={`bar-${i}`}>
+                <GradientTealBlue id="TealBlue" />
+                <Bar
+                  x={xPoint(d)}
+                  y={yMax - barHeight}
+                  height={barHeight}
+                  width={xScale.bandwidth()}
+                  fill={`url(#TealBlue)`}
+                />
+              </Group>
+            );
+          })}
+        </svg>
+      </div>
     );
   }
 }
