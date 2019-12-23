@@ -9,9 +9,7 @@ const App = () => {
   return (
     <div>
       <NavBar />
-      <Column flexGrow={1}>
-        <Row horizontal="center">
-        </Row>
+      <Column flexGrow={1} style={{ margin: 40 }}>
         <Row vertical="center" wrap="true">
           <Column flexGrow={1} horizontal="center">
             <ResultsContainer />
