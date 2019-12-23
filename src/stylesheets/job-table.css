@@ -6,4 +6,16 @@ div.col-xs-4 > div:nth-child(1){
   display: none;
 }
 
+table {
+  background-color: white;
+}
+
+tr th{
+  color: #f9f9f9;
+  background-color: 	#428bca;
+}
+
+tr th:hover {
+  cursor: pointer;
+}
 

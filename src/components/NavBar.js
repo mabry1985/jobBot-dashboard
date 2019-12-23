@@ -6,7 +6,7 @@ const NavBar = props => {
     <nav
       className="navbar navbar-light bg-light"
       style={{
-        backgroundColor: "#F8F8FF",
+        backgroundColor: "#f9f9f9",
         boxShadow:
           "0 0px 8px 0 rgba(0, 0, 0, 0.2), 0 0px 15px 0 rgba(0, 0, 0, 0.19)"
       }}

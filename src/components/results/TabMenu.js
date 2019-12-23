@@ -1,40 +1,22 @@
 import React from 'react';
-import styled from "styled-components";
 
-
-const TabLink = styled.h5`
-  color: blue;
-  :hover {
-    color: teal;
-    cursor: pointer;
-  }
-`;
 const TabMenu = (props) => {
-  return(
-    <ul 
-      className="nav nav-pills" 
-      style={{float: 'right', marginRight: 15}}>
+  return (
+    <ul className="nav nav-pills" style={{ float: "right", marginRight: 55, marginTop: 30 }}>
       <li className="nav-item">
-        <TabLink 
-          className="" 
-          onClick={props.onClickJobs}
-          > 
+        <button className="btn-primary" onClick={props.onClickJobs}>
           Jobs
-        </TabLink>
-      </li>
-      <li>
-        <h5>|</h5>
+        </button>
       </li>
       <li className="nav-item">
-        <TabLink
-          className="" 
-          onClick={props.onClickQueries}
-          >
+        <button 
+          className="btn-primary" 
+          onClick={props.onClickQueries}>
           Queries
-        </TabLink>
+        </button>
       </li>
     </ul>
-  )
+  );
 }
 
 export default TabMenu

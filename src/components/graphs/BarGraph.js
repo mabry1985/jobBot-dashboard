@@ -14,7 +14,7 @@ class BarGraph extends React.Component {
       data: [],
       width: 500,
       height: 500,
-      margin: { top: 20, bottom: 20, left: 20, right: 20}
+      margin: { top: 30, bottom: 40, left: 20, right: 20}
     };
   }
   
@@ -49,15 +49,27 @@ class BarGraph extends React.Component {
       <div
         style={{
           height: 600,
-          backgroundColor: "#F8F8FF",
+          backgroundColor: "#f9f9f9",
           padding: 40,
-          paddingLeft: 88,
           borderRadius: 5,
           boxShadow:
             "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"
         }}
       >
-        <svg width={this.state.width} height={this.state.height}>
+        <svg
+          width={this.state.width}
+          height={this.state.height}
+          style={{
+            borderRadius: 5,
+            backgroundColor: "white",
+            padding: 15,
+            boxShadow:
+              "0 3px 5px 0 rgba(0, 0, 0, 0.2), 0 5px 10px 0 rgba(0, 0, 0, 0.19)"
+          }}
+        >
+          <text x="375" y="15" fontSize={15} >
+            Mentions
+          </text>
           <AxisBottom
             top={yMax}
             scale={xScale}

@@ -1,7 +1,6 @@
 import React from 'react';
 import axios from 'axios';
 const DataTable = require("react-data-components").DataTable;
-require("../../stylesheets/query-table.css");
 
 class SearchQueries extends React.Component {
   constructor(props) {
@@ -48,7 +47,7 @@ class SearchQueries extends React.Component {
       <div
         style={{
           height: 600,
-          backgroundColor: "#F8F8FF",
+          backgroundColor: "#f9f9f9",
           padding: 40,
           borderRadius: 5,
           boxShadow:
