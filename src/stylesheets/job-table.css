@@ -1,3 +1,9 @@
 div.container {
   max-width: 500px;
 }
+
+div.col-xs-4 > div:nth-child(1){
+  display: none;
+}
+
+
