@@ -67,9 +67,6 @@ class BarGraph extends React.Component {
               "0 3px 5px 0 rgba(0, 0, 0, 0.2), 0 5px 10px 0 rgba(0, 0, 0, 0.19)"
           }}
         >
-          <text x="375" y="15" fontSize={15} >
-            Mentions
-          </text>
           <AxisBottom
             top={yMax}
             scale={xScale}
