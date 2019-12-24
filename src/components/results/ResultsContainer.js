@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import TabMenu from './TabMenu';
 import JobResults from "./JobResults";
-import SearchQueries from "./SearchQueries";
+import SearchQueries from "../search/SearchQueries";
 
 import axios from "axios";
 
@@ -11,9 +11,8 @@ class ResultsContainer extends Component {
 
     this.state = {
       queries: false,
-      endpoint: 'main',
-      loading: true,
-      jobs: []
+      jobSelected: false,
+      jobs: [],
     };
   }
 
@@ -31,11 +30,15 @@ class ResultsContainer extends Component {
   }
 
   handleClickQueries = () => {
-    this.setState({ queries: true })
+    this.setState({ queries: true, jobSelected: false })
   }
 
   handleClickJobs = () => {
-    this.setState({ queries: false })
+    this.setState({ queries: false, jobSelected: false })
+  }
+
+  handleClickJobRow = () => {
+    this.setState({ jobSelected: true })
   }
 
   manipulateJobData(jobs){
@@ -60,17 +63,20 @@ class ResultsContainer extends Component {
       .catch(error => {
         console.log(error);
       });
-
-    
   }
 
   render() {
     let content;
+
     if(!this.state.queries){
-      content = <JobResults jobs={this.state.jobs} />;
+      content = <JobResults 
+                  jobs={this.state.jobs} 
+                  onClickJobRow={this.handleClickJobRow}
+                  jobSelected={this.state.jobSelected}/>;
     } else {
-      content = <SearchQueries/>
+        content = <SearchQueries/>
     }
+
     return (
       <div>
         <TabMenu 
