@@ -5,6 +5,22 @@ import { Group } from "@vx/group";
 import { scaleBand, scaleLinear } from "@vx/scale";
 import { AxisLeft, AxisBottom } from "@vx/axis";
 import { GradientTealBlue } from "@vx/gradient";
+import styled from "styled-components";
+
+const BarGraphDiv = styled.div`
+  height: 600px;
+  background-color: #f9f9f9;
+  padding: 40px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+`;
+
+const StyledSvg = styled.svg`
+  border-radius: 5px;
+  background-color: white;
+  padding: 15px;
+  box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.2), 0 5px 10px 0 rgba(0, 0, 0, 0.19);
+`;
 
 class BarGraph extends React.Component {
   constructor(props) {
@@ -46,39 +62,18 @@ class BarGraph extends React.Component {
     const yPoint = compose(yScale, y);
 
     return (
-      <div
-        style={{
-          height: 600,
-          backgroundColor: "#f9f9f9",
-          padding: 40,
-          borderRadius: 5,
-          boxShadow:
-            "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"
-        }}
-      >
-        <svg
-          width={this.state.width}
-          height={this.state.height}
-          style={{
-            borderRadius: 5,
-            backgroundColor: "white",
-            padding: 15,
-            boxShadow:
-              "0 3px 5px 0 rgba(0, 0, 0, 0.2), 0 5px 10px 0 rgba(0, 0, 0, 0.19)"
-          }}
-        >
+      <BarGraphDiv>
+        <StyledSvg width={this.state.width} height={this.state.height}>
           <AxisBottom
             top={yMax}
             scale={xScale}
-            numTicks={this.state.width > 520 ? 10 : 5}
-          />
+            numTicks={this.state.width > 520 ? 10 : 5}/>
           <AxisLeft
             top={this.state.margin.top}
             left={this.state.margin.left + 6}
             scale={yScale}
             numTicks={6}
-            tickFormat={this.yScaleFormat}
-          />
+            tickFormat={this.yScaleFormat}/>
           {this.state.data.map((d, i) => {
             const barHeight = yMax - yPoint(d);
             return (
@@ -89,13 +84,12 @@ class BarGraph extends React.Component {
                   y={yMax - barHeight}
                   height={barHeight}
                   width={xScale.bandwidth()}
-                  fill={`url(#TealBlue)`}
-                />
+                  fill={`url(#TealBlue)`}/>
               </Group>
             );
           })}
-        </svg>
-      </div>
+        </StyledSvg>
+      </BarGraphDiv>
     );
   }
 }

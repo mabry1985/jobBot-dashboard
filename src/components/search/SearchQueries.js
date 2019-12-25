@@ -1,6 +1,15 @@
 import React from 'react';
 import axios from 'axios';
+import styled from "styled-components";
 const DataTable = require("react-data-components").DataTable;
+
+const SearchDiv = styled.div`
+  height: 600px;
+  background-color: #f9f9f9;
+  padding: 40px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+`;
 
 class SearchQueries extends React.Component {
   constructor(props) {
@@ -44,16 +53,7 @@ class SearchQueries extends React.Component {
 
   render() {
     return (
-      <div
-        style={{
-          height: 600,
-          backgroundColor: "#f9f9f9",
-          padding: 40,
-          borderRadius: 5,
-          boxShadow:
-            "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"
-        }}
-      >
+      <SearchDiv>
         <DataTable
           buildRowOptions={this.buildRowOptions}
           className="container queries"
@@ -63,7 +63,7 @@ class SearchQueries extends React.Component {
           initialData={this.state.queriesList}
           initialPageLength={10}
         />
-      </div>
+      </SearchDiv>
     );
   }
 }

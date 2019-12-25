@@ -1,7 +1,17 @@
 import React from "react";
 import Job from './Job';
+import styled from "styled-components";
+
 const DataTable = require("react-data-components").DataTable;
 require('../../stylesheets/job-table.css');
+
+const ResultsDiv = styled.div`
+  height: 600px;
+  background-color: #f9f9f9;
+  padding: 40px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+`;
 
 class JobResults extends React.Component {
   constructor(props){
@@ -76,19 +86,9 @@ class JobResults extends React.Component {
     }
 
     return (
-      //refactor to be styled component
-      <div
-        style={{
-          height: 600,
-          backgroundColor: "#f9f9f9",
-          padding: 40,
-          borderRadius: 5,
-          boxShadow:
-            "0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"
-        }}
-      >
+      <ResultsDiv>
         {content}
-      </div>
+      </ResultsDiv>
     );
   }
 }

@@ -1,4 +1,16 @@
 import React from 'react';
+import styled from "styled-components";
+
+const JobDiv = styled.div`
+  margin-top: 50px;
+`;
+
+const DescriptionDiv = styled.div`
+  height: 345px;
+  width: 475px;
+  overflow: scroll;
+  margin-top: 15px;
+`;
 
 class Job extends React.Component {
 
@@ -20,16 +32,18 @@ class Job extends React.Component {
         </button>
       </a>
     
-    const link = !applyUrl ? null : <div>{content}</div>
+    const link = !applyUrl ? null : <div style={{marginTop: 5}}>{content}</div>
     
     return (
-      <div key={_id} className="container">
+      <JobDiv key={_id} className="container">
         <h4>{title}</h4>
         <h5>{postedBy}</h5>
         <h6>{jobBoardSite} | {timeStamp}</h6>
-        <p>{description}</p>
         {link}
-      </div>
+        <DescriptionDiv>
+          <p>{description}</p>
+        </DescriptionDiv>
+      </JobDiv>
     );
   }
 };
