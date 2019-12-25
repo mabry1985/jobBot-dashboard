@@ -12,16 +12,23 @@ class Job extends React.Component {
       jobBoardSite, 
       _id
     } = this.props.job
-
-    const link = !applyUrl ? null : <a href={applyUrl}>Apply</a>;
+    
+    const content =
+      <a href={applyUrl} target="_blank">
+        <button className="btn-primary">
+          Apply
+        </button>
+      </a>
+    
+    const link = !applyUrl ? null : <div>{content}</div>
     
     return (
       <div key={_id} className="container">
-        <h5>{title}</h5>
-        <h6>{postedBy} | {jobBoardSite}</h6>
+        <h4>{title}</h4>
+        <h5>{postedBy}</h5>
+        <h6>{jobBoardSite} | {timeStamp}</h6>
         <p>{description}</p>
         {link}
-        <p>{timeStamp}</p>
       </div>
     );
   }
