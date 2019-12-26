@@ -8,7 +8,7 @@ const JobDiv = styled.div`
 const DescriptionDiv = styled.div`
   height: 345px;
   width: 475px;
-  overflow: scroll;
+  overflow: auto;
   margin-top: 15px;
 `;
 
