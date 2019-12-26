@@ -100,21 +100,22 @@ class SearchQueries extends React.Component {
   handleSubmitNew = e => {
     e.preventDefault();
 
-    const query = {
-      query: this.state.newQuery
-    };
-  
-    axios
-      .post("http://localhost:5000/search/add", query)
-      .then(res => console.log(res.data));
-      
-    this.setState(
-      { 
-        newQuery: "",
-      }
-    );
+    if(this.props.isAdmin) {
+      const query = {
+        query: this.state.newQuery
+      };
+    
+      axios
+        .post("http://localhost:5000/search/add", query)
+        .then(res => console.log(res.data));
+        
+      this.setState({ newQuery: ""});
+    } else {
+      this.props.onError("Must be an admin to add queries")
+      this.setState({ newQuery: "" });
+    }
   };
-
+  
   handleSubmitEdit = e => {
     e.preventDefault();
 
@@ -185,7 +186,7 @@ class SearchQueries extends React.Component {
       </div>
     );
 
-    const content = this.props.querySelected ? editQuery : queryList;
+    const content = this.props.querySelected && this.props.isAdmin? editQuery : queryList;
 
     return (
       <SearchDiv>
