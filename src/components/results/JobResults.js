@@ -1,9 +1,30 @@
 import React from "react";
 import Job from './Job';
 import styled from "styled-components";
-
 const DataTable = require("react-data-components").DataTable;
-require('../../stylesheets/job-table.css');
+
+const StyledTableDiv = styled.div`
+  div.container {
+    max-width: 500px;
+  }
+
+  div.col-xs-4 > div:nth-child(1) {
+    display: none;
+  }
+
+  table {
+    background-color: white;
+  }
+
+  tr th {
+    color: #f9f9f9;
+    background-color: #428bca;
+  }
+
+  tr:hover {
+    cursor: pointer;
+  }
+`;
 
 const ResultsDiv = styled.div`
   height: 600px;
@@ -66,6 +87,7 @@ class JobResults extends React.Component {
           <h5 style={{ marginLeft: 14 }}>
             Total Listings: {this.props.jobs.length}
           </h5>
+          <StyledTableDiv>
           <DataTable
             buildRowOptions={this.buildRowOptions}
             className="container"
@@ -77,6 +99,7 @@ class JobResults extends React.Component {
             initialSortBy={{ prop: "timeStamp", order: "descending" }}
             pageLengthOptions={[5, 10, 20, 50]}
           />
+          </StyledTableDiv>
         </div>
     } else {
         content = 

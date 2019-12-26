@@ -11,6 +11,36 @@ const SearchDiv = styled.div`
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 `;
 
+const InputDiv = styled.div`
+  position: relative;
+  left: 15px;
+  top: 52px;
+`;
+
+const StyledTableDiv = styled.div`
+  div.container {
+    max-width: 500px;
+  }
+
+  div.col-xs-4 {
+    visibility: hidden;
+  }
+
+  table {
+    background-color: white;
+  }
+
+  tr th {
+    color: #f9f9f9;
+    background-color: #428bca;
+  }
+
+  tr:hover {
+    cursor: pointer;
+  }
+`;
+
+
 class SearchQueries extends React.Component {
   constructor(props) {
     super(props);
@@ -54,15 +84,22 @@ class SearchQueries extends React.Component {
   render() {
     return (
       <SearchDiv>
-        <DataTable
-          buildRowOptions={this.buildRowOptions}
-          className="container queries"
-          id="query"
-          keys="_id"
-          columns={this.columns}
-          initialData={this.state.queriesList}
-          initialPageLength={10}
-        />
+        <StyledTableDiv>
+        <InputDiv>
+          <label htmlFor="">Add Query:</label>
+          <br/>
+          <input></input>
+        </InputDiv>
+          <DataTable
+            buildRowOptions={this.buildRowOptions}
+            className="container queries"
+            id="query"
+            keys="_id"
+            columns={this.columns}
+            initialData={this.state.queriesList}
+            initialPageLength={10}
+          />
+        </StyledTableDiv>
       </SearchDiv>
     );
   }
