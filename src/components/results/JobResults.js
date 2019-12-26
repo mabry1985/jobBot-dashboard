@@ -3,7 +3,7 @@ import Job from './Job';
 import styled from "styled-components";
 const DataTable = require("react-data-components").DataTable;
 
-const StyledTableDiv = styled.div`
+const StyledDiv = styled.div`
   div.container {
     max-width: 500px;
   }
@@ -87,7 +87,7 @@ class JobResults extends React.Component {
           <h5 style={{ marginLeft: 14 }}>
             Total Listings: {this.props.jobs.length}
           </h5>
-          <StyledTableDiv>
+          <StyledDiv>
           <DataTable
             buildRowOptions={this.buildRowOptions}
             className="container"
@@ -99,13 +99,13 @@ class JobResults extends React.Component {
             initialSortBy={{ prop: "timeStamp", order: "descending" }}
             pageLengthOptions={[5, 10, 20, 50]}
           />
-          </StyledTableDiv>
+          </StyledDiv>
         </div>
     } else {
         content = 
-          <div>
+          <StyledDiv>
             <Job job={this.state}/>
-          </div>
+          </StyledDiv>
     }
 
     return (
