@@ -77,7 +77,6 @@ class JobResults extends React.Component {
     };
   }
 
-
   render(){
     let content;
     
