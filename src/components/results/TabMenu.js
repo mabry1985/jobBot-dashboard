@@ -19,7 +19,7 @@ const TabMenu = (props) => {
         style={
           { 
             float: "right", 
-            marginRight: 55, 
+            marginRight: 40, 
             marginTop: 30 
           }
         }>

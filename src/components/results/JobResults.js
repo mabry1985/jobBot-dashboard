@@ -5,7 +5,7 @@ const DataTable = require("react-data-components").DataTable;
 
 const StyledDiv = styled.div`
   div.container {
-    max-width: 500px;
+    max-width: 600px;
   }
 
   div.col-xs-4 > div:nth-child(1) {
@@ -27,9 +27,9 @@ const StyledDiv = styled.div`
 `;
 
 const ResultsDiv = styled.div`
-  height: 600px;
+  height: 650px;
   background-color: #f9f9f9;
-  padding: 40px;
+  padding: 25px;
   border-radius: 5px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 `;
@@ -94,7 +94,7 @@ class JobResults extends React.Component {
             keys="_id"
             columns={this.columns}
             initialData={this.props.jobs}
-            initialPageLength={5}
+            initialPageLength={6}
             initialSortBy={{ prop: "timeStamp", order: "descending" }}
             pageLengthOptions={[5, 10, 20, 50]}
           />

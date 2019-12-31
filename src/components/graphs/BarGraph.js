@@ -8,7 +8,7 @@ import { GradientTealBlue } from "@vx/gradient";
 import styled from "styled-components";
 
 const BarGraphDiv = styled.div`
-  height: 600px;
+  height: 650px;
   background-color: #f9f9f9;
   padding: 40px;
   border-radius: 5px;
@@ -28,9 +28,9 @@ class BarGraph extends React.Component {
 
     this.state = {
       data: [],
-      width: 500,
-      height: 500,
-      margin: { top: 30, bottom: 40, left: 20, right: 20}
+      width: 525,
+      height: 525,
+      margin: { top: 30, bottom: 25, left: 20, right: 20}
     };
   }
   
