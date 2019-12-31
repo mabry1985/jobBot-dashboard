@@ -94,7 +94,7 @@ class JobResults extends React.Component {
             keys="_id"
             columns={this.columns}
             initialData={this.props.jobs}
-            initialPageLength={6}
+            initialPageLength={7}
             initialSortBy={{ prop: "timeStamp", order: "descending" }}
             pageLengthOptions={[5, 10, 20, 50]}
           />

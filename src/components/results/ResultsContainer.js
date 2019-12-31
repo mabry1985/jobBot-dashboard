@@ -3,7 +3,6 @@ import TabMenu from './TabMenu';
 import JobResults from "./JobResults";
 import SearchQueries from "../search/SearchQueries";
 import Admin from "../Admin";
-
 import axios from "axios";
 
 class ResultsContainer extends Component {
