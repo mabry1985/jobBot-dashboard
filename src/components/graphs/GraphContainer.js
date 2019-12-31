@@ -6,7 +6,7 @@ class GraphContainer extends React.Component {
     super(props)
 
     this.state = {
-      active: "Bar Graph"
+      active: "Bar Graph",
     }
   }
 

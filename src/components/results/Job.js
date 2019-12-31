@@ -2,12 +2,17 @@ import React from 'react';
 import styled from "styled-components";
 
 const JobDiv = styled.div`
-  margin-top: 50px;
+  position: relative;
+  top: 80px;
 `;
 
-const DescriptionDiv = styled.div`
+const SubHeading = styled.h6`
+  padding-left: 5px;
+`
+
+const Description = styled.p`
   height: 345px;
-  width: 475px;
+  width: 577px;
   overflow: auto;
   margin-top: 15px;
 `;
@@ -37,12 +42,10 @@ class Job extends React.Component {
     return (
       <JobDiv key={_id} className="container">
         <h4>{title}</h4>
-        <h5>{postedBy}</h5>
-        <h6>{jobBoardSite} | {timeStamp}</h6>
+        <SubHeading>{postedBy}</SubHeading>
+        <SubHeading>{jobBoardSite} | {timeStamp}</SubHeading>
         {link}
-        <DescriptionDiv>
-          <p>{description}</p>
-        </DescriptionDiv>
+        <Description>{description}</Description>
       </JobDiv>
     );
   }

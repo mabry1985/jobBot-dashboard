@@ -3,13 +3,20 @@ import Job from './Job';
 import styled from "styled-components";
 const DataTable = require("react-data-components").DataTable;
 
-const StyledDiv = styled.div`
+const TableDiv = styled.div`
   div.container {
     max-width: 600px;
+    position: relative;
+    top: 36px;
   }
 
   div.col-xs-4 > div:nth-child(1) {
     display: none;
+  }
+
+  div.col-xs-4 {
+    color: #428bca;
+    margin-top: 30px;
   }
 
   table {
@@ -21,9 +28,30 @@ const StyledDiv = styled.div`
     background-color: #428bca;
   }
 
-  tr:hover {
-    cursor: pointer;
+  th:nth-child(1),
+  th:nth-child(2) {
+    width: 290px;
   }
+
+  h5 {
+    text-align: center;
+    margin-top: 30px;
+    color: #428bca;
+  }
+`;
+
+const JobDiv = styled.div`
+  div.container {
+    max-width: 600px;
+    position: relative;
+    top: 80px;
+
+  }
+
+  div.col-xs-4 > div:nth-child(1) {
+    display: none;
+  }
+
 `;
 
 const ResultsDiv = styled.div`
@@ -81,30 +109,30 @@ class JobResults extends React.Component {
     let content;
     
     if (!this.props.jobSelected){
-      content =        
-        <div>
-          <h5 style={{ marginLeft: 14 }}>
-            Total Listings: {this.props.jobs.length}
-          </h5>
-          <StyledDiv>
-          <DataTable
-            buildRowOptions={this.buildRowOptions}
-            className="container"
-            style={{ height: 500 }}
-            keys="_id"
-            columns={this.columns}
-            initialData={this.props.jobs}
-            initialPageLength={7}
-            initialSortBy={{ prop: "timeStamp", order: "descending" }}
-            pageLengthOptions={[5, 10, 20, 50]}
-          />
-          </StyledDiv>
-        </div>
+      content = (
+
+          <TableDiv>
+            <DataTable
+              buildRowOptions={this.buildRowOptions}
+              className="container"
+              keys="_id"
+              columns={this.columns}
+              initialData={this.props.jobs}
+              initialPageLength={6}
+              initialSortBy={{ prop: "timeStamp", order: "descending" }}
+            />
+            <h5>
+              Total Listings
+              <br/>
+              {this.props.jobs.length}
+            </h5>
+          </TableDiv>
+      );
     } else {
         content = 
-          <StyledDiv>
+          <JobDiv>
             <Job job={this.state}/>
-          </StyledDiv>
+          </JobDiv>
     }
 
     return (

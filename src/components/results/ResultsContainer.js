@@ -8,7 +8,7 @@ import axios from "axios";
 class ResultsContainer extends Component {
   constructor(props) {
     super(props);
-
+    
     this.state = {
       queries: false,
       querySelected: false,
@@ -24,7 +24,21 @@ class ResultsContainer extends Component {
       password: '',
     };
   }
-
+  
+  componentDidMount() {
+    axios
+      .get("https://jobbot-server.herokuapp.com/jobs/")
+      .then(response => {
+        this.setState({
+          jobs: this.manipulateJobData(response.data),
+          loading: false
+        });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
+  
   //move function to job results component
   truncate(string, length) {
     let strArray = string.split(" ");
@@ -136,19 +150,6 @@ class ResultsContainer extends Component {
     return new Promise(resolve => setTimeout(resolve, milliseconds));
   }
 
-  componentDidMount() {
-    axios
-      .get("https://jobbot-server.herokuapp.com/jobs/")
-      .then(response => {
-        this.setState({
-          jobs: this.manipulateJobData(response.data),
-          loading: false
-        });
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }
 
   render() {
     let content;
