@@ -100,7 +100,7 @@ class ResultsContainer extends Component {
     );
   }
 
-  handlePasswordSwitch = () => {
+  handlePasswordConfirm = () => {
     this.setState(
       {
         isAdmin: true,
@@ -137,10 +137,9 @@ class ResultsContainer extends Component {
     return new Promise(resolve => setTimeout(resolve, milliseconds));
   }
 
-
   componentDidMount() {
     axios
-      .get("http://localhost:5000/jobs/")
+      .get("https://jobbot-server.herokuapp.com/jobs/")
       .then(response => {
         this.setState({
           jobs: this.manipulateJobData(response.data),
@@ -166,7 +165,7 @@ class ResultsContainer extends Component {
     } else if (this.state.adminSelected) {
       content = (
         <Admin
-          onPasswordSwitch={this.handlePasswordSwitch}
+          onPasswordConfirm={this.handlePasswordConfirm}
           onError={this.handleError}
         />
       );

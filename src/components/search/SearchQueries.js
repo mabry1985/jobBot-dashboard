@@ -53,7 +53,7 @@ class SearchQueries extends React.Component {
 
   componentDidMount() {
     axios
-      .get("http://localhost:5000/search/")
+      .get("https://jobbot-server.herokuapp.com/search/")
       .then(response => {
         this.setState({
           queriesList: response.data,
@@ -67,7 +67,7 @@ class SearchQueries extends React.Component {
 
   componentDidUpdate() {
     axios
-      .get("http://localhost:5000/search/")
+      .get("https://jobbot-server.herokuapp.com/search/")
       .then(response => {
         this.setState({
           queriesList: response.data,
@@ -106,7 +106,7 @@ class SearchQueries extends React.Component {
       };
     
       axios
-        .post("http://localhost:5000/search/add", query)
+        .post("https://jobbot-server.herokuapp.com/search/add", query)
         .then(res => console.log(res.data));
         
       this.setState({ newQuery: ""});
@@ -124,7 +124,7 @@ class SearchQueries extends React.Component {
     };
 
     axios
-      .post("http://localhost:5000/search/update/" + this.props.queryId, query)
+      .post("https://jobbot-server.herokuapp.com/search/update/" + this.props.queryId, query)
       .then(res => console.log(res.data));
     
     this.props.onClearQueryPage();
@@ -132,7 +132,7 @@ class SearchQueries extends React.Component {
 
   handleDeleteQuery = () => {
     axios
-      .delete("http://localhost:5000/search/" + this.props.queryId)
+      .delete("https://jobbot-server.herokuapp.com/search/" + this.props.queryId)
       .then(response => {
         console.log(response.data);
       });

@@ -25,7 +25,7 @@ class Admin extends React.Component{
     if (this.props.isAdmin === true ) {
       this.props.onError("Already Logged in");
     }else if (this.state.password === "qwerty" ) {
-      this.props.onPasswordSwitch();
+      this.props.onPasswordConfirm();
     } else {
       this.props.onError("Wrong Password");
     }
