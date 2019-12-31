@@ -10,7 +10,7 @@ import styled from "styled-components";
 const BarGraphDiv = styled.div`
   height: 650px;
   background-color: #f9f9f9;
-  padding: 40px;
+  padding: 62px;
   border-radius: 5px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 `;
@@ -30,7 +30,13 @@ class BarGraph extends React.Component {
       data: [],
       width: 525,
       height: 525,
-      margin: { top: 30, bottom: 25, left: 20, right: 20}
+      margin: 
+        { 
+          top: 30, 
+          bottom: 25, 
+          left: 20, 
+          right: 20
+        },
     };
   }
   
