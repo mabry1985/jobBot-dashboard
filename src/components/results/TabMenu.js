@@ -33,11 +33,6 @@ const TabMenu = (props) => {
             Queries
           </button>
         </li>
-        <li className="nav-item">
-          <button className="btn-primary" onClick={props.onClickAdmin}>
-            Admin
-          </button>
-        </li>
       </ul>
     </div>
   );

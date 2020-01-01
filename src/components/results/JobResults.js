@@ -73,7 +73,7 @@ class JobResults extends React.Component {
       jobBoardSite: '',
       description: '',
       applyUrl: '',
-      timeStamp: ''
+      timeStamp: '',
     }
   }
   

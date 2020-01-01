@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import TabMenu from './TabMenu';
 import JobResults from "./JobResults";
 import SearchQueries from "../search/SearchQueries";
-import Admin from "../Admin";
 import axios from "axios";
 
 class ResultsContainer extends Component {
@@ -10,18 +9,13 @@ class ResultsContainer extends Component {
     super(props);
     
     this.state = {
+      jobs: [],
       queries: false,
       querySelected: false,
-      adminSelected: false,
+      jobSelected: false,
       //move to search query component
       query: "",
       queryId: "",
-      //
-      jobSelected: false,
-      jobs: [],
-      isAdmin: false,
-      error: "",
-      password: '',
     };
   }
   
@@ -53,25 +47,23 @@ class ResultsContainer extends Component {
     }
   }
 
-  handleClickQueries = () => {
+  handleClickQueriesButton = () => {
     this.setState(
       { 
         queries: true, 
         jobSelected: false, 
         querySelected: false, 
-        adminSelected: false
       }
     );
   };
 
+  //move to search query component
   handleClickQueryRow = row => {
     this.setState(
       { 
         querySelected: true, 
-        //move to search query component
         query: row.query, 
         queryId: row._id 
-        //
       }
     );
   };
@@ -87,13 +79,12 @@ class ResultsContainer extends Component {
     });
   }
 
-  handleClickJobs = () => {
+  handleClickJobsButton = () => {
     this.setState(
       { 
         queries: false, 
         jobSelected: false, 
         querySelected: false, 
-        adminSelected: false
       }
     );
   };
@@ -101,40 +92,6 @@ class ResultsContainer extends Component {
   handleClickJobRow = () => {
     this.setState({ jobSelected: true });
   };
-
-  handleClickAdmin = () => {
-    this.setState(
-      {
-        queries: false,
-        jobSelected: false,
-        querySelected: false,
-        adminSelected: true
-      }
-    );
-  }
-
-  handlePasswordConfirm = () => {
-    this.setState(
-      {
-        isAdmin: true,
-        adminSelected: false
-      }
-    );
-  }
-
-  handleError = async (err) => {
-    this.setState(
-      {
-        error: err
-      }
-    );
-    await this.sleep(3000);
-    this.setState(
-      {
-        error: ""
-      }
-    );
-  }
 
   manipulateJobData(jobs) {
     jobs.map(job => {
@@ -146,15 +103,10 @@ class ResultsContainer extends Component {
     return jobs;
   }
 
-  async sleep(milliseconds) {
-    return new Promise(resolve => setTimeout(resolve, milliseconds));
-  }
-
-
   render() {
     let content;
 
-    if (!this.state.queries && !this.state.adminSelected) {
+    if (!this.state.queries) {
       content = (
         <JobResults
           jobs={this.state.jobs}
@@ -162,14 +114,7 @@ class ResultsContainer extends Component {
           jobSelected={this.state.jobSelected}
         />
       );
-    } else if (this.state.adminSelected) {
-      content = (
-        <Admin
-          onPasswordConfirm={this.handlePasswordConfirm}
-          onError={this.handleError}
-        />
-      );
-    } else {
+    }else {
       content = (
         <SearchQueries
           onClickQueryRow={this.handleClickQueryRow}
@@ -178,8 +123,8 @@ class ResultsContainer extends Component {
           query={this.state.query}
           queryId={this.state.queryId}
           onChange={this.handleChangeQuery}
-          isAdmin={this.state.isAdmin}
-          onError={this.handleError}
+          isAdmin={this.props.isAdmin}
+          onError={this.props.onError}
         />
       );
     }
@@ -187,11 +132,9 @@ class ResultsContainer extends Component {
     return (
       <div>
         <TabMenu
-          onClickQueries={this.handleClickQueries}
-          onClickJobs={this.handleClickJobs}
-          onClickAdmin={this.handleClickAdmin}
+          onClickQueries={this.handleClickQueriesButton}
+          onClickJobs={this.handleClickJobsButton}
           error={this.state.error}
-          isAdmin={this.state.isAdmin}
         />
         {content}
       </div>
