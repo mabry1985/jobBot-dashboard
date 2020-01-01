@@ -4,7 +4,8 @@ import styled from "styled-components";
 const DataTable = require("react-data-components").DataTable;
 
 const SearchDiv = styled.div`
-  height: 600px;
+  height: 650px;
+  width: 650px;
   background-color: #f9f9f9;
   padding: 40px;
   border-radius: 5px;
@@ -19,7 +20,7 @@ const InputDiv = styled.div`
 
 const StyledTableDiv = styled.div`
   div.container {
-    max-width: 500px;
+    width: 583px;
   }
 
   div.col-xs-4 {
@@ -51,7 +52,15 @@ class SearchQueries extends React.Component {
     };
   }
 
-  componentDidMount() {
+  componentDidMount = () => {
+    this.getQueryData();
+  };
+
+  componentDidUpdate = () => {
+    this.getQueryData();
+  };
+  
+  getQueryData() {
     axios
       .get("https://jobbot-server.herokuapp.com/search/")
       .then(response => {
@@ -65,22 +74,13 @@ class SearchQueries extends React.Component {
       });
   }
 
-  componentDidUpdate() {
-    axios
-      .get("https://jobbot-server.herokuapp.com/search/")
-      .then(response => {
-        this.setState({
-          queriesList: response.data,
-          loading: false
-        });
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }
-
-  columns = [{ title: "Query", prop: "query" }];
-
+  columns = [
+    {
+      title: "Query",
+      prop: "query"
+    }
+  ];
+  
   selectRow = row => {
     this.props.onClickQueryRow(row);
   };
@@ -95,27 +95,27 @@ class SearchQueries extends React.Component {
     this.setState({
       newQuery: e.target.value
     });
-  }
+  };
 
   handleSubmitNew = e => {
     e.preventDefault();
 
-    if(this.props.isAdmin) {
+    if (this.props.isAdmin) {
       const query = {
         query: this.state.newQuery
       };
-    
+
       axios
         .post("https://jobbot-server.herokuapp.com/search/add", query)
         .then(res => console.log(res.data));
-        
-      this.setState({ newQuery: ""});
+
+      this.setState({ newQuery: "" });
     } else {
-      this.props.onError("Must be an admin to add queries")
+      this.props.onError("Must be an admin to add queries");
       this.setState({ newQuery: "" });
     }
   };
-  
+
   handleSubmitEdit = e => {
     e.preventDefault();
 
@@ -124,15 +124,21 @@ class SearchQueries extends React.Component {
     };
 
     axios
-      .post("https://jobbot-server.herokuapp.com/search/update/" + this.props.queryId, query)
+      .post(
+        "https://jobbot-server.herokuapp.com/search/update/" +
+          this.props.queryId,
+        query
+      )
       .then(res => console.log(res.data));
-    
+
     this.props.onClearQueryPage();
   };
 
   handleDeleteQuery = () => {
     axios
-      .delete("https://jobbot-server.herokuapp.com/search/" + this.props.queryId)
+      .delete(
+        "https://jobbot-server.herokuapp.com/search/" + this.props.queryId
+      )
       .then(response => {
         console.log(response.data);
       });
@@ -145,10 +151,11 @@ class SearchQueries extends React.Component {
           <form onSubmit={this.handleSubmitNew}>
             <label htmlFor="add-query">Add Query:</label>
             <br />
-            <input 
-              id="add-query" 
+            <input
+              id="add-query"
               value={this.state.newQuery}
-              onChange={this.handleNewQuery} />
+              onChange={this.handleNewQuery}
+            />
             {/* <input 
               type="submit" 
               value="Submit" 
@@ -157,7 +164,7 @@ class SearchQueries extends React.Component {
         </InputDiv>
         <DataTable
           buildRowOptions={this.buildRowOptions}
-          className="container queries"
+          className="queries"
           id="query"
           keys="_id"
           columns={this.columns}
@@ -168,17 +175,12 @@ class SearchQueries extends React.Component {
     );
 
     const editQuery = (
-      <div className="container">
+      <div className="">
         <form onSubmit={this.handleSubmitEdit}>
           <label htmlFor="">Edit Query:</label>
           <br />
-          <input 
-            value={this.props.query} 
-            onChange={this.props.onChangeQuery} />
-          <input 
-            type="submit" 
-            value="Edit" 
-            className="btn-primary" />
+          <input value={this.props.query} onChange={this.props.onChangeQuery} />
+          <input type="submit" value="Edit" className="btn-primary" />
           <button className="btn-primary" onClick={this.handleDeleteQuery}>
             Delete
           </button>
@@ -186,7 +188,8 @@ class SearchQueries extends React.Component {
       </div>
     );
 
-    const content = this.props.querySelected && this.props.isAdmin? editQuery : queryList;
+    const content =
+      this.props.querySelected && this.props.isAdmin ? editQuery : queryList;
 
     return (
       <SearchDiv>
