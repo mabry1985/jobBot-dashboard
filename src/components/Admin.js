@@ -2,12 +2,12 @@ import React from "react";
 import styled from "styled-components";
 
 const AdminDiv = styled.div`
-  width: 580px;
-  height: 600px;
-  background-color: #f9f9f9;
-  padding: 40px;
-  border-radius: 5px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  float: right;
+  padding-right: 40px;
+
+  label{
+    display: none;
+  }
 `;
 
 class Admin extends React.Component{
@@ -45,7 +45,8 @@ class Admin extends React.Component{
           <br />
           <input 
             id="password" 
-            onChange={this.handlePasswordChange} /> 
+            onChange={this.handlePasswordChange} 
+            placeholder="Login"/> 
         </form>
       </AdminDiv>
     );
