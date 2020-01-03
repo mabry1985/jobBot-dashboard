@@ -3,9 +3,27 @@ import botLogo from '../images/bot-logo.png';
 import Admin from './Admin';
 
 class NavBar extends React.Component {
+  constructor(props){
+    super(props)
+    
+    this.state = { 
+      loginVisible: false,
+      secretCount: 0 
+    }
+  }
+
+  handleLogoClick = () =>{
+    this.setState({ secretCount: this.state.secretCount + 1})
+    
+    if (this.state.secretCount === 2) {
+      this.setState({ loginVisible: true });
+    }
+  }
+
   render(){
     const adminForm = (
         <Admin
+          loginVisible={this.state.loginVisible}
           onPasswordConfirm={this.props.onPasswordConfirm}
           onError={this.props.onError}
         />
@@ -15,7 +33,7 @@ class NavBar extends React.Component {
 
     return (
       <nav
-        className="navbar navbar-light bg-light"
+        className="navbar"
         style={{
           backgroundColor: "#f9f9f9",
           boxShadow:
@@ -31,10 +49,11 @@ class NavBar extends React.Component {
           width="30"
           height="49"
           className="d-inline-block align-top"
+          onClick={this.handleLogoClick}
           alt="bot-logo"
         />
-  
-      {content}
+
+        {content}
       </nav>
     );
   }
