@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import TabMenu from './TabMenu';
 import JobResults from "./JobResults";
 import SearchQueries from "../search/SearchQueries";
+import Loading from '../Loading';
 import axios from "axios";
 
 class ResultsContainer extends Component {
@@ -13,6 +14,7 @@ class ResultsContainer extends Component {
       queries: false,
       querySelected: false,
       jobSelected: false,
+      loading: true,
       //move to search query component
       query: "",
       queryId: "",
@@ -106,27 +108,29 @@ class ResultsContainer extends Component {
   render() {
     let content;
 
-    if (!this.state.queries) {
-      content = (
-        <JobResults
-          jobs={this.state.jobs}
-          onClickJobRow={this.handleClickJobRow}
-          jobSelected={this.state.jobSelected}
-        />
-      );
-    }else {
-      content = (
-        <SearchQueries
-          onClickQueryRow={this.handleClickQueryRow}
-          onClearQueryPage={this.handleClearQueryPage}
-          querySelected={this.state.querySelected}
-          query={this.state.query}
-          queryId={this.state.queryId}
-          onChange={this.handleChangeQuery}
-          isAdmin={this.props.isAdmin}
-          onError={this.props.onError}
-        />
-      );
+    if(this.state.loading) {
+      content = <Loading />
+    } else if (!this.state.queries) {
+        content = (
+          <JobResults
+            jobs={this.state.jobs}
+            onClickJobRow={this.handleClickJobRow}
+            jobSelected={this.state.jobSelected}
+          />
+        );
+      } else {
+          content = (
+            <SearchQueries
+              onClickQueryRow={this.handleClickQueryRow}
+              onClearQueryPage={this.handleClearQueryPage}
+              querySelected={this.state.querySelected}
+              query={this.state.query}
+              queryId={this.state.queryId}
+              onChange={this.handleChangeQuery}
+              isAdmin={this.props.isAdmin}
+              onError={this.props.onError}
+            />
+        );
     }
 
     return (

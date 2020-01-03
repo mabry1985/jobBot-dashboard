@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from "axios";
+import Loading from '../Loading';
 import { Bar } from "@vx/shape";
 import { Group } from "@vx/group";
 import { scaleBand, scaleLinear } from "@vx/scale";
@@ -37,12 +38,13 @@ class BarGraph extends React.Component {
           left: 20, 
           right: 20
         },
+      loading: true,
     };
   }
   
   async componentDidMount() {
     const request = await axios.get("https://jobbot-server.herokuapp.com/skills/bar-graph/")
-    this.setState({ data: request.data });
+    this.setState({ data: request.data, loading: false });
   };
 
   render() {
@@ -66,6 +68,14 @@ class BarGraph extends React.Component {
     const compose = (scale, accessor) => data => scale(accessor(data));
     const xPoint = compose(xScale, x);
     const yPoint = compose(yScale, y);
+
+    if (this.state.loading) {
+     return (
+     <div>
+        <Loading />
+      </div>
+     )
+    }
 
     return (
       <BarGraphDiv>

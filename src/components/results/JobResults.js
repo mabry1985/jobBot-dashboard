@@ -45,7 +45,6 @@ const JobDiv = styled.div`
     max-width: 600px;
     position: relative;
     top: 80px;
-
   }
 
   div.col-xs-4 > div:nth-child(1) {

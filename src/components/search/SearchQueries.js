@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import styled from "styled-components";
+import Loading from "../Loading";
 const DataTable = require("react-data-components").DataTable;
 
 const SearchDiv = styled.div`
@@ -26,6 +27,9 @@ const StyledTableDiv = styled.div`
   div.col-xs-4 {
     visibility: hidden;
   }
+  label {
+    color: #428bca;
+  }
 
   table {
     background-color: white;
@@ -48,7 +52,8 @@ class SearchQueries extends React.Component {
 
     this.state = {
       queriesList: [],
-      newQuery: ""
+      newQuery: "",
+      loading: true,
     };
   }
 
@@ -57,6 +62,7 @@ class SearchQueries extends React.Component {
   };
 
   componentDidUpdate = () => {
+    this.setState=({ loading: true })
     this.getQueryData();
   };
   
@@ -179,7 +185,7 @@ class SearchQueries extends React.Component {
         <form onSubmit={this.handleSubmitEdit}>
           <label htmlFor="">Edit Query:</label>
           <br />
-          <input value={this.props.query} onChange={this.props.onChangeQuery} />
+          <input defaultValue={this.props.query} onChange={this.props.onChangeQuery} />
           <input type="submit" value="Edit" className="btn-primary" />
           <button className="btn-primary" onClick={this.handleDeleteQuery}>
             Delete
@@ -190,6 +196,12 @@ class SearchQueries extends React.Component {
 
     const content =
       this.props.querySelected && this.props.isAdmin ? editQuery : queryList;
+
+    if (this.state.loading) {
+      return (
+        <Loading/>
+      )
+    }
 
     return (
       <SearchDiv>

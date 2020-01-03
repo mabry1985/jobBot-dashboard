@@ -10,7 +10,7 @@ class App extends React.Component {
 
     this.state = {
       isAdmin: false,
-      error: ""
+      error: "",
     };
   }
 
@@ -31,6 +31,10 @@ class App extends React.Component {
   handlePasswordConfirm = () => {
     this.setState({ isAdmin: true });
   };
+
+  handlingLoadingToggle = () => {
+    this.setState=({ loading: !this.state.loading})
+  }
 
   render() {
     return (
