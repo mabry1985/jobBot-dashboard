@@ -75,7 +75,7 @@ class ResultsContainer extends Component {
   };
 
   // move to search query component
-  handleChangeQuery(e) {
+  handleChangeQuery = (e) => {
     this.setState({
       query: e.target.value
     });
@@ -95,7 +95,7 @@ class ResultsContainer extends Component {
     this.setState({ jobSelected: true });
   };
 
-  manipulateJobData(jobs) {
+  manipulateJobData = (jobs) => {
     jobs.map(job => {
       //move truncation to job results component
       job.title = this.truncate(job.title, 3);
@@ -126,7 +126,7 @@ class ResultsContainer extends Component {
               querySelected={this.state.querySelected}
               query={this.state.query}
               queryId={this.state.queryId}
-              onChange={this.handleChangeQuery}
+              onChangeQuery={this.handleChangeQuery}
               isAdmin={this.props.isAdmin}
               onError={this.props.onError}
             />

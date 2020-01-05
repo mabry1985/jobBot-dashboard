@@ -66,7 +66,7 @@ class SearchQueries extends React.Component {
     this.getQueryData();
   };
   
-  getQueryData() {
+  getQueryData = () => {
     axios
       .get("https://jobbot-server.herokuapp.com/search/")
       .then(response => {
@@ -135,7 +135,8 @@ class SearchQueries extends React.Component {
           this.props.queryId,
         query
       )
-      .then(res => console.log(res.data));
+      .then(res => console.log(res.data))
+      .catch(err => console.error(err));
 
     this.props.onClearQueryPage();
   };
