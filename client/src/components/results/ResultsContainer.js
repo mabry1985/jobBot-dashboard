@@ -99,7 +99,7 @@ class ResultsContainer extends Component {
     jobs.map(job => {
       //move truncation to job results component
       job.title = this.truncate(job.title, 3);
-      job.timeStamp = new Date(job.timeStamp).toLocaleDateString();
+      job.createdAt = new Date(job.createdAt).toLocaleDateString();
       return job;
     });
     return jobs;

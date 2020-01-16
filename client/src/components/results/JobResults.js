@@ -72,7 +72,7 @@ class JobResults extends React.Component {
       jobBoardSite: '',
       description: '',
       applyUrl: '',
-      timeStamp: '',
+      createdAt: '',
     }
   }
   
@@ -80,7 +80,7 @@ class JobResults extends React.Component {
     { title: 'Name', prop: 'title' },
     { title: 'Posted By', prop: 'postedBy' },
     { title: 'Job Board', prop: 'jobBoardSite' },
-    { title: 'Date', prop: 'timeStamp'}
+    { title: 'Date', prop: 'createdAt'}
   ];
  
   selectRow = (row) => {
@@ -93,7 +93,7 @@ class JobResults extends React.Component {
         jobBoardSite: row.jobBoardSite,
         description: row.description,
         applyUrl: row.applyUrl,
-        timeStamp: row.timeStamp, 
+        createdAt: row.createdAt, 
       }
     );
   };
@@ -118,7 +118,7 @@ class JobResults extends React.Component {
               columns={this.columns}
               initialData={this.props.jobs}
               initialPageLength={6}
-              initialSortBy={{ prop: "timeStamp", order: "descending" }}
+              initialSortBy={{ prop: "createdAt", order: "descending" }}
             />
             <h5>
               Total Listings

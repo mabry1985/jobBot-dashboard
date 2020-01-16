@@ -25,7 +25,7 @@ class Job extends React.Component {
       title, 
       description,
       postedBy,
-      timeStamp, 
+      createdAt,
       jobBoardSite, 
       _id
     } = this.props.job
@@ -43,7 +43,7 @@ class Job extends React.Component {
       <JobDiv key={_id} className="container">
         <h4>{title}</h4>
         <SubHeading>{postedBy}</SubHeading>
-        <SubHeading>{jobBoardSite} | {timeStamp}</SubHeading>
+        <SubHeading>{jobBoardSite} | {createdAt}</SubHeading>
         {link}
         <Description>{description}</Description>
       </JobDiv>
