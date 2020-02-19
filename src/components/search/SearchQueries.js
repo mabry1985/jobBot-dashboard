@@ -4,6 +4,8 @@ import styled from "styled-components";
 import Loading from "../Loading";
 const DataTable = require("react-data-components").DataTable;
 
+require("dotenv").config();
+
 const SearchDiv = styled.div`
   height: 650px;
   width: 650px;
@@ -45,7 +47,6 @@ const StyledTableDiv = styled.div`
   }
 `;
 
-
 class SearchQueries extends React.Component {
   constructor(props) {
     super(props);
@@ -68,7 +69,7 @@ class SearchQueries extends React.Component {
   
   getQueryData = () => {
     axios
-      .get("https://jobbot-server.herokuapp.com/search/")
+      .get(process.env.API_ADDRESS + "search/")
       .then(response => {
         this.setState({
           queriesList: response.data,
@@ -112,7 +113,7 @@ class SearchQueries extends React.Component {
       };
 
       axios
-        .post("https://jobbot-server.herokuapp.com/search/add", query)
+        .post(process.env.API_ADDRESS + "search/add", query)
         .then(res => console.log(res.data));
 
       this.setState({ newQuery: "" });
@@ -131,7 +132,7 @@ class SearchQueries extends React.Component {
 
     axios
       .post(
-        "https://jobbot-server.herokuapp.com/search/update/" +
+        process.env.API_ADDRESS + "search/update/" +
           this.props.queryId,
         query
       )
@@ -144,7 +145,7 @@ class SearchQueries extends React.Component {
   handleDeleteQuery = () => {
     axios
       .delete(
-        "https://jobbot-server.herokuapp.com/search/" + this.props.queryId
+        process.env.API_ADDRESS + "search/" + this.props.queryId
       )
       .then(response => {
         console.log(response.data);

@@ -8,6 +8,8 @@ import { AxisLeft, AxisBottom } from "@vx/axis";
 import { GradientTealBlue } from "@vx/gradient";
 import styled from "styled-components";
 
+require("dotenv").config();
+
 const BarGraphDiv = styled.div`
   height: 650px;
   background-color: #f9f9f9;
@@ -43,7 +45,7 @@ class BarGraph extends React.Component {
   }
   
   async componentDidMount() {
-    const request = await axios.get("https://jobbot-server.herokuapp.com/skills/bar-graph/")
+    const request = await axios.get(process.env.API_ADDRESS + "skills/bar-graph/")
     this.setState({ data: request.data, loading: false });
   };
 
