@@ -1,0 +1,15 @@
+{
+    "prod": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-jobbot-dashboard-prod-191217-authRole",
+            "UnauthRoleArn": "arn:aws:iam::234028429311:role/amplify-jobbot-dashboard-prod-191217-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::234028429311:role/amplify-jobbot-dashboard-prod-191217-authRole",
+            "Region": "us-west-2",
+            "DeploymentBucketName": "amplify-jobbot-dashboard-prod-191217-deployment",
+            "UnauthRoleName": "amplify-jobbot-dashboard-prod-191217-unauthRole",
+            "StackName": "amplify-jobbot-dashboard-prod-191217",
+            "StackId": "arn:aws:cloudformation:us-west-2:234028429311:stack/amplify-jobbot-dashboard-prod-191217/a3152b90-52c5-11ea-8f41-0689ca626300",
+            "AmplifyAppId": "d16kim8y6w9zt7"
+        }
+    }
+}
