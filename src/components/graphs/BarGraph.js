@@ -45,6 +45,7 @@ class BarGraph extends React.Component {
   }
   
   async componentDidMount() {
+    console.log(process.env.API_ADDRESS)
     const request = await axios.get(process.env.API_ADDRESS + "skills/bar-graph/")
     this.setState({ data: request.data, loading: false });
   };
