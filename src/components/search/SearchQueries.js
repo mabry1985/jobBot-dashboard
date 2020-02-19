@@ -69,7 +69,7 @@ class SearchQueries extends React.Component {
   
   getQueryData = () => {
     axios
-      .get(process.env.API_ADDRESS + "search/")
+      .get(`${process.env.REACT_APP_API_ADDRESS}/search/`)
       .then(response => {
         this.setState({
           queriesList: response.data,
@@ -113,7 +113,7 @@ class SearchQueries extends React.Component {
       };
 
       axios
-        .post(process.env.API_ADDRESS + "search/add", query)
+        .post(`${process.env.REACT_APP_API_ADDRESS}/search/add`, query)
         .then(res => console.log(res.data));
 
       this.setState({ newQuery: "" });
@@ -132,7 +132,7 @@ class SearchQueries extends React.Component {
 
     axios
       .post(
-        process.env.API_ADDRESS + "search/update/" +
+        `${process.env.REACT_APP_API_ADDRESS}/search/update` +
           this.props.queryId,
         query
       )
@@ -145,7 +145,7 @@ class SearchQueries extends React.Component {
   handleDeleteQuery = () => {
     axios
       .delete(
-        process.env.API_ADDRESS + "search/" + this.props.queryId
+        `${process.env.REACT_APP_API_ADDRESS}/search/` + this.props.queryId
       )
       .then(response => {
         console.log(response.data);

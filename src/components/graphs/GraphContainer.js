@@ -15,7 +15,7 @@ class GraphContainer extends React.Component {
       case "Bar Graph":
         return <BarGraph />;
       default:
-        return <div></div>
+        return null
     } 
   }
   

@@ -5,8 +5,6 @@ import SearchQueries from "../search/SearchQueries";
 import Loading from '../Loading';
 import axios from "axios";
 
-require("dotenv").config();
-
 class ResultsContainer extends Component {
   constructor(props) {
     super(props);
@@ -25,7 +23,7 @@ class ResultsContainer extends Component {
   
   componentDidMount() {
     axios
-      .get(process.env.API_ADDRESS + "jobs/")
+      .get(`${process.env.REACT_APP_API_ADDRESS}/jobs`)
       .then(response => {
         this.setState({
           jobs: this.manipulateJobData(response.data),

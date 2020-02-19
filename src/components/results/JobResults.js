@@ -50,7 +50,6 @@ const JobDiv = styled.div`
   div.col-xs-4 > div:nth-child(1) {
     display: none;
   }
-
 `;
 
 const ResultsDiv = styled.div`
